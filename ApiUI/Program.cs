@@ -4,6 +4,7 @@ using DataAccess.Abstract.Repository;
 using DataAccess.Base.Repository;
 using DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Shared.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +17,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-builder.Services.AddDbContext<NewsContext>(context => context.UseSqlServer("sql baðlantýsý yapýlacak"));
 
 #region DependencyInjection
 //DB CONTEXT START

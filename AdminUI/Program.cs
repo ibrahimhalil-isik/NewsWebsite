@@ -1,7 +1,14 @@
+using Shared.Helpers.Abstract;
+using Shared.Helpers.Base;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region DependencyInjection
+builder.Services.AddScoped<IRequestService, RequestManager>();
+#endregion
 
 var app = builder.Build();
 
