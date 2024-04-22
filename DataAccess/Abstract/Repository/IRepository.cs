@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataAccess.Abstract.Repository
+﻿namespace DataAccess.Abstract.Repository
 {
     public interface IRepository<TEntity>where TEntity : class
     {

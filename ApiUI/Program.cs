@@ -1,3 +1,5 @@
+using Business.Abstract;
+using Business.Base;
 using DataAccess.Abstract.Repository;
 using DataAccess.Base.Repository;
 using DataAccess.Context;
@@ -18,14 +20,25 @@ var app = builder.Build();
 builder.Services.AddDbContext<NewsContext>(context => context.UseSqlServer("sql baðlantýsý yapýlacak"));
 
 #region DependencyInjection
-
+//DB CONTEXT START
 builder.Services.AddScoped<DbContext, NewsContext>();
+//DB CONTEXT START
 
+//DATA ACCESS START
 builder.Services.AddScoped<IRepository<News>, GenericRepository<News>>();
 builder.Services.AddScoped<IRepository<Category>, GenericRepository<Category>>();
 builder.Services.AddScoped<IRepository<Comment>, GenericRepository<Comment>>();
 builder.Services.AddScoped<IRepository<Writer>, GenericRepository<Writer>>();
 builder.Services.AddScoped<IRepository<Slide>, GenericRepository<Slide>>();
+//DATA ACCESS FINISH
+
+//BUSINESS START
+builder.Services.AddScoped<INewsService, NewsManager>();
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<IWriterService, WriterManager>();
+builder.Services.AddScoped<ICommentService, CommentManager>();
+builder.Services.AddScoped<ISlideService, SlideManager>();
+//BUSINESS FINISH
 
 #endregion
 

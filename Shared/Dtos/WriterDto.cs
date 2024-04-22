@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Shared.Entities
+﻿namespace Shared.Dtos
 {
-    public class Writer
+    public class WriterDto
     {
-        [Key]
         public int WriterId { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
