@@ -1,3 +1,6 @@
+using ApiAccess.Abstract;
+using ApiAccess.Base;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Shared.Helpers.Abstract;
 using Shared.Helpers.Base;
 
@@ -8,7 +11,11 @@ builder.Services.AddControllersWithViews();
 
 #region DependencyInjection
 builder.Services.AddScoped<IRequestService, RequestManager>();
+builder.Services.AddScoped<INewsApiRequest, NewsApiRequest>();
 #endregion
+
+//Bunu akif et 
+// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => { x.LoginPath = "/Account/Login"; });
 
 var app = builder.Build();
 
@@ -25,6 +32,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//Bunu akif et 
+// app.UseAuthentication();  
 app.UseAuthorization();
 
 app.MapControllerRoute(

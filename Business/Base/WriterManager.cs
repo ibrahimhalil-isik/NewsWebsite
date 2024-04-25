@@ -26,7 +26,7 @@ namespace Business.Base
         }
         public bool Delete(int id)
         {
-            return _repository.Delete(new Writer { WriterId = id});
+            return _repository.Delete(new Writer { WriterId = id });
         }
 
         public List<WriterDto> GetAll()
@@ -72,6 +72,17 @@ namespace Business.Base
             result.WriterStatus = model.WriterStatus;
 
             return result;
+        }
+
+        public WriterDto GetWriterByEmailPassword(string email, string password)
+        {
+            var writer = _repository.GetAll();
+            var findedData = writer.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+            if (findedData != null)
+            { 
+                return WriterItem(findedData); 
+            }
+            else { return null; }
         }
     }
 }

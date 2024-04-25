@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Dtos;
 
@@ -34,6 +33,5 @@ namespace ApiUI.Controllers
         [HttpPost]
         [Route("UpdateNews")]
         public NewsDto Update(NewsDto model) => _newsService.Update(model);
-
     }
 }

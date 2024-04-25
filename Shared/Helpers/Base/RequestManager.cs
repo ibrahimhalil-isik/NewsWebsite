@@ -6,7 +6,7 @@ namespace Shared.Helpers.Base
 {
     public class RequestManager : IRequestService
     {
-        readonly string baseApiAddress = "https://localhost:7041/api/";
+        readonly string baseApiAddress = "https://localhost:44352/api/";
         public T Get<T>(string url)
         {
             var client = new RestClient(baseApiAddress);
@@ -14,7 +14,8 @@ namespace Shared.Helpers.Base
             var response = client.ExecuteGet(request);
 
             var result = JsonConvert.DeserializeObject<T>(response.Content);
-            return result;            
+
+            return result;
         }
 
         public T Post<T>(string url, object model)
