@@ -16,8 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
+builder.Services.AddDbContext<NewsContext>(k => k.UseNpgsql(builder.Configuration.GetConnectionString("PostgresqlConnection")), ServiceLifetime.Scoped);
 #region DependencyInjection
 //DB CONTEXT START
 builder.Services.AddScoped<DbContext, NewsContext>();
@@ -40,6 +39,10 @@ builder.Services.AddScoped<ISlideService, SlideManager>();
 //BUSINESS FINISH
 
 #endregion
+
+var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
