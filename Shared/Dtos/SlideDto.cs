@@ -8,5 +8,7 @@
         public int NewsId { get; set; }
         public string Image { get; set; }
         public bool SlideStatus { get; set; }
+
+        public string? News { get; set; }
     }
 }

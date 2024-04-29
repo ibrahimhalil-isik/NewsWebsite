@@ -12,11 +12,14 @@ builder.Services.AddControllersWithViews();
 #region DependencyInjection
 builder.Services.AddScoped<IRequestService, RequestManager>();
 builder.Services.AddScoped<INewsApiRequest, NewsApiRequest>();
+builder.Services.AddScoped<IWriterApiRequest, WriterApiRequest>();
+builder.Services.AddScoped<ICategoryApiRequest, CategoryApiRequest>();
+builder.Services.AddScoped<ISlideApiRequest, SlideApiRequest>();
+builder.Services.AddScoped<ICommentApiRequest, CommentApiRequest>();
+builder.Services.AddScoped<ICommonApiRequest, CommonApiRequest>();
 #endregion
 
-//Bunu akif et 
-// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => { x.LoginPath = "/Account/Login"; });
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x => { x.LoginPath = "/Account/Login"; });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,8 +35,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//Bunu akif et 
-// app.UseAuthentication();  
+app.UseAuthentication();  
 app.UseAuthorization();
 
 app.MapControllerRoute(

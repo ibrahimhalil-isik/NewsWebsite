@@ -18,18 +18,18 @@ namespace ApiAccess.Base
         }
 
         public List<CategoryDto> GetAll() 
-            => _requestService.Get<List<CategoryDto>>("Category/GetAllCategory");
+            => _requestService.Get<List<CategoryDto>>("/Category/GetAllCategory");
 
         public CategoryDto GetById(int id) 
-            => _requestService.Get<CategoryDto>("Category/GetCategoryById?id=" + id);
+            => _requestService.Get<CategoryDto>("/Category/GetCategoryById?id=" + id);
 
         public CategoryDto Add(CategoryDto model) 
-            => _requestService.Post<CategoryDto>("Category/AddCategory", model);
+            => _requestService.Post<CategoryDto>("/Category/AddCategory", model);
 
         public CategoryDto Update(CategoryDto model) 
-            => _requestService.Post<CategoryDto>("Category/UpdateCategory", model);
+            => _requestService.Post<CategoryDto>("/Category/UpdateCategory", model);
 
         public bool Delete(int id) 
-            => _requestService.Get<bool>("Category/DeleteCategory?id=" + id);
+            => _requestService.Get<bool>("/Category/DeleteCategory?id=" + id);
     }
 }

@@ -8,15 +8,20 @@ namespace Business.Base
     public class NewsManager : INewsService
     {
         private readonly IRepository<News> _repository;
+		private readonly IRepository<Writer> _repositoryWriter;
+		private readonly IRepository<Category> _repositoryCategory;
 
-        public NewsManager(IRepository<News> repository)
+		public NewsManager(IRepository<News> repository, IRepository<Writer> repositoryWriter, IRepository<Category> repositoryCategory)
         {
             _repository = repository;
+            _repositoryWriter = repositoryWriter;
+            _repositoryCategory = repositoryCategory;
         }
 
         public NewsDto Add(NewsDto model)
         {
-            var response = _repository.Add(NewsItem(model));
+            model.NewsDate = DateTime.Now;
+            News response = _repository.Add(NewsItem(model));
             
             return NewsItem(response);
         }
@@ -24,6 +29,15 @@ namespace Business.Base
         public NewsDto Update(NewsDto model)
         {
             var news = _repository.GetById(model.NewsId);
+            news.NewsId = model.NewsId;
+            news.Title = model.Title;
+            news.Contents = model.Contents;
+            news.ClicksNumber = model.ClicksNumber;
+            news.Video = model.Video;
+            news.WriterId = model.WriterId;
+            news.CategoryId = model.CategoryId;
+            news.NewsStatus = model.NewsStatus;
+
             News response = _repository.Update(news);
 
             return NewsItem(response);
@@ -71,7 +85,11 @@ namespace Business.Base
 
         private NewsDto NewsItem(News model)
         {
-            NewsDto result = new NewsDto();
+            var writer = _repositoryWriter.GetById(model.WriterId);
+            var category = _repositoryCategory.GetById(model.CategoryId);
+            string writerFullName = writer.Name + " " + writer.SurName;
+
+			NewsDto result = new NewsDto();
             result.NewsId = model.NewsId;
             result.Title = model.Title;
             result.Contents = model.Contents;
@@ -83,7 +101,11 @@ namespace Business.Base
             result.CategoryId = model.CategoryId;
             result.NewsStatus = model.NewsStatus;
 
-            return result;
+			result.Writer = writerFullName;
+            result.WriterImage = writer.Image;
+            result.Category = category.CategoryName;
+
+			return result;
         }
     }
 }

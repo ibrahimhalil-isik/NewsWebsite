@@ -4,7 +4,6 @@ using DataAccess.Abstract.Repository;
 using DataAccess.Base.Repository;
 using DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Shared.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,14 +41,14 @@ builder.Services.AddScoped<ISlideService, SlideManager>();
 
 var app = builder.Build();
 
-
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 

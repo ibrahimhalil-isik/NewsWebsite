@@ -1,9 +1,11 @@
 ﻿using ApiAccess.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdminUI.Controllers
 {
-    public class HomeController : Controller
+	[Authorize]
+	public class HomeController : Controller
     {
         private readonly INewsApiRequest _newsApiRequest;
         public HomeController(INewsApiRequest newsApiRequest)
@@ -12,8 +14,8 @@ namespace AdminUI.Controllers
         }
         public IActionResult Index()
         {
-            var news = _newsApiRequest.GetAll();
-            return View(news);
+            //var news = _newsApiRequest.GetAll();
+            return View();
         }
     }
 }

@@ -1,0 +1,58 @@
+﻿@using AdminUI.Models
+@model WriterViewModel
+
+<div class="container">
+	<div class="page-title">
+		<h3>Yorum İşlemleri</h3>
+	</div>
+	<div class="row">
+
+		<div class="col-md-12 col-lg-12">
+			<div class="card">
+				<div class="card-header">Yorum Güncelle</div>
+				<div class="card-body">
+					<p class="card-title">Yorum güncelleme işlemi yapabilirsiniz.</p>
+
+					@using (Html.BeginForm("UpdateWriter", "Writer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+					{
+						@Html.HiddenFor(x => x.WriterId)
+						<div class="mb-3">
+							<label for="email" class="form-label">Ad</label>
+							@Html.TextBoxFor(x => x.Name, new { placeholder = "Ad", @class = "form-control" })
+						</div>
+						<div class="mb-3">
+							<label for="email" class="form-label">Soyad</label>
+							@Html.TextBoxFor(x => x.SurName, new { placeholder = "Soyad", @class = "form-control" })
+						</div>
+						<div class="mb-3">
+							<label for="email" class="form-label">E-Posta</label>
+							@Html.TextBoxFor(x => x.Email, new { placeholder = "E-Posta", @class = "form-control" })
+						</div>
+						<div class="mb-3">
+							<label for="email" class="form-label">Şifre</label>
+							@Html.TextBoxFor(x => x.Password, new { placeholder = "Şifre", type = "password", @class = "form-control" })
+						</div>
+						<div class="mb-3">
+							<label for="email" class="form-label">Geçerli Resim</label>
+							@* <img src="@Url.Content(@conf.GetSection("MySettings")["ApiUrl"] + Model.Image)" style="max-height:150px;" /> *@
+							<img src="@Url.Content("https://localhost:7041" + Model.Image)" style="max-height:150px;" />
+							@Html.HiddenFor(x => x.Image)
+						</div>
+						<div class="mb-3">
+							<label for="email" class="form-label">Yeni Resim</label>
+							@Html.TextBoxFor(x => x.ImageFile, new { type = "file", @class = "form-control" })
+						</div>
+						<div class="mb-3">
+							<label for="email" class="form-label">Statü</label>
+							<div class="form-check form-switch">
+								@Html.CheckBoxFor(x => x.WriterStatus, new { @class = "form-check-input" })
+							</div>
+						</div>
+						<br />
+						<button type="submit" class="btn btn-warning">Güncelle</button>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

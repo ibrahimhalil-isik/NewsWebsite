@@ -8,13 +8,16 @@ namespace Business.Base
     public class CommentManager : ICommentService
     {
         private readonly IRepository<Comment> _repository;
-        public CommentManager(IRepository<Comment> repository)
+        private readonly IRepository<News> _newsRepository;
+        public CommentManager(IRepository<Comment> repository, IRepository<News> newsRepository)
         {
             _repository = repository;
+            _newsRepository = newsRepository;
         }
 
         public CommentDto Add(CommentDto model)
         {
+            model.CommentDate = DateTime.Now;
             var response = _repository.Add(CommentItem(model));
             return CommentItem(response);
         }
@@ -22,6 +25,15 @@ namespace Business.Base
         public CommentDto Update(CommentDto model)
         {
             var comment = _repository.GetById(model.CommentId);
+            comment.CommentText = model.CommentText;
+            comment.CommentTitle = model.CommentTitle;
+            comment.CommentDate = model.CommentDate;
+            comment.Name = model.Name;
+            comment.Surname = model.Surname;
+            comment.Email = model.Email;
+            comment.NewsId = model.NewsId;
+            comment.CommentStatus = model.CommentStatus;
+
             Comment response  = _repository.Update(comment);
             return CommentItem(response);
         }
@@ -61,6 +73,8 @@ namespace Business.Base
             result.Email = model.Email;
             result.NewsId = model.NewsId;
             result.CommentStatus = model.CommentStatus;
+
+            result.NewsTitle =_newsRepository.GetById(model.NewsId).Title;
 
             return result;
         }

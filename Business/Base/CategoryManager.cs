@@ -21,7 +21,9 @@ namespace Business.Base
         public CategoryDto Update(CategoryDto model)
         {
             var category = _repository.GetById(model.CategoryId);
-            Category response = _repository.Update(category);
+			category.CategoryStatus= model.CategoryStatus;
+			category.CategoryName = model.CategoryName;
+			Category response = _repository.Update(category);
 
             return CategoryItem(response);
         }
