@@ -20,7 +20,7 @@ namespace Business.Base
 
         public NewsDto Add(NewsDto model)
         {
-            model.NewsDate = DateTime.Now;
+            model.NewsDate = DateTime.Now.ToUniversalTime();
             News response = _repository.Add(NewsItem(model));
             
             return NewsItem(response);

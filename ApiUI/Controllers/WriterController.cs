@@ -15,7 +15,7 @@ namespace ApiUI.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllWrite")]
+        [Route("GetAllWriter")]
         public List<WriterDto> GetAll() => _writerService.GetAll();
 
         [HttpGet]

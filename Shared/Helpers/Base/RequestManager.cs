@@ -6,7 +6,7 @@ namespace Shared.Helpers.Base
 {
 	public class RequestManager : IRequestService
 	{
-		readonly string baseApiAddress = "http://localhost:36335/api/";
+		readonly string baseApiAddress = "https://localhost:44352/api/";
 		public T Get<T>(string url)
 		{
 			var client = new RestClient(baseApiAddress);

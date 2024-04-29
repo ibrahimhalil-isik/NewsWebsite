@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdminUI.Controllers
 {
-	[Authorize]
+	//[Authorize]
 	public class HomeController : Controller
     {
         private readonly INewsApiRequest _newsApiRequest;

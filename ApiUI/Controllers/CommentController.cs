@@ -9,9 +9,9 @@ namespace ApiUI.Controllers
     public class CommentController : ControllerBase
     {
         private readonly ICommentService _commentService;
-        public CommentController(ICommentService _commentService)
+        public CommentController(ICommentService commentService)
         {
-            _commentService = _commentService;
+            _commentService = commentService;
         }
 
         [HttpGet]

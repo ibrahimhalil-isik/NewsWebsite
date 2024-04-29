@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(NewsContext))]
-    [Migration("20240425060810_initial")]
+    [Migration("20240429161852_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -75,9 +75,8 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("NewsId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("NewsId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -106,6 +105,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("NewsDate")
@@ -118,6 +118,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Video")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("WriterId")

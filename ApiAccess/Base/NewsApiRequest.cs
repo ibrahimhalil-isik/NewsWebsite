@@ -11,21 +11,21 @@ namespace ApiAccess.Base
         {
             _requestService = requestService;
         }
-        public List<NewsDto> GetAll() => _requestService.Get<List<NewsDto>>("/News/GetAllNews");
+        public List<NewsDto> GetAll() => _requestService.Get<List<NewsDto>>("News/GetAllNews");
         public NewsDto Add(NewsDto model)
         {
-            return _requestService.Post<NewsDto>("/News/AddNews", model);
+            return _requestService.Post<NewsDto>("News/AddNews", model);
         }
-        public NewsDto GetById(int id) => _requestService.Get<NewsDto>("/News/GetNewsById?id=" + id);
+        public NewsDto GetById(int id) => _requestService.Get<NewsDto>("News/GetNewsById?id=" + id);
 
         public NewsDto Update(NewsDto model)
         {
-            return _requestService.Post<NewsDto>("/News/UpdateNews", model);
+            return _requestService.Post<NewsDto>("News/UpdateNews", model);
         }
 
         public bool Delete(int id)
         {
-            return _requestService.Get<bool>("/News/DeleteNews?id=" + id);
+            return _requestService.Get<bool>("News/DeleteNews?id=" + id);
         }
     }
 }

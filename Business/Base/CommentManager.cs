@@ -17,7 +17,7 @@ namespace Business.Base
 
         public CommentDto Add(CommentDto model)
         {
-            model.CommentDate = DateTime.Now;
+            model.CommentDate = DateTime.Now.ToUniversalTime();
             var response = _repository.Add(CommentItem(model));
             return CommentItem(response);
         }

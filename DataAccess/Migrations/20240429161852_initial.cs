@@ -38,7 +38,7 @@ namespace DataAccess.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     Surname = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    NewsId = table.Column<string>(type: "text", nullable: false),
+                    NewsId = table.Column<int>(type: "integer", nullable: false),
                     CommentStatus = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -56,8 +56,8 @@ namespace DataAccess.Migrations
                     Contents = table.Column<string>(type: "text", nullable: true),
                     NewsDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ClicksNumber = table.Column<int>(type: "integer", nullable: false),
-                    Image = table.Column<string>(type: "text", nullable: true),
-                    Video = table.Column<string>(type: "text", nullable: true),
+                    Image = table.Column<string>(type: "text", nullable: false),
+                    Video = table.Column<string>(type: "text", nullable: false),
                     WriterId = table.Column<int>(type: "integer", nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: false),
                     NewsStatus = table.Column<bool>(type: "boolean", nullable: false)

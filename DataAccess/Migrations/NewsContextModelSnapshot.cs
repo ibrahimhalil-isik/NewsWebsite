@@ -72,9 +72,8 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("NewsId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("NewsId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -103,6 +102,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("NewsDate")
@@ -115,6 +115,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Video")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("WriterId")
